@@ -93,7 +93,12 @@ function New-Passphrase
         $WordList = Get-Content $File
 
         do 
-        {
+        {            
+            for($j=0; $j -lt 100; $j++)
+            {
+                Write-Progress "Generating Passphrase %:" -PercentComplete $j
+            }
+
             if ($null -ne (Get-Command Get-SecureRandom -ErrorAction SilentlyContinue))
             {
                 $PassphraseElements = $WordList | Get-SecureRandom -Count $NumberOfWords
